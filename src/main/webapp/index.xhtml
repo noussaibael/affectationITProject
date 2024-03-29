@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Employe List</title>
+    <h:outputStylesheet library="webjars" name="bootstrap/5.3.0/css/bootstrap.min.css" />
+</h:head>
+<h:body>
+    <h:form>
+        <center>
+            <h2><h:outputText value="Employe List" /></h2>
+        </center>
+        <h:dataTable id="dataTableId" value="#{employeBean.employe}" var="e" class="table table-striped" rows="6" paginator="true">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{e.employe.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{e.employe.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                #{e.employe.email}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Skills</f:facet>
+                #{e.employe.skills}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Projects</f:facet>
+                #{e.employe.projects}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton action="#{employeBean.delete(e.id)}" value="Delete" class="btn btn-outline-danger">
+                    <f:ajax render="@form" />
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+        <center>
+            <h:commandButton action="affectation.xhtml?faces-redirect=true" value="Add Employe" class="btn btn-success" />
+        </center>
+    </h:form>
+</h:body>
+</html>
+
